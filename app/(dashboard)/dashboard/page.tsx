@@ -7,6 +7,7 @@ import PastBillChart from '@/components/dashboard/PastBillChart';
 import UsageChart from '@/components/dashboard/UsageChart';
 import UtilitySelect from '@/components/dashboard/UtilitySelect';
 import React from 'react'
+import { generateDailyUsage } from "../../../lib/generateDummyData";
 
 type Props = {}
 
