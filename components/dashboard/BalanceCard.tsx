@@ -9,7 +9,7 @@ type Props = {}
 
 const BalanceCard = (props: Props) => {
   return (
-    <Card className="bg-card relative min-h-48 w-full max-w-lg overflow-hidden p-0 text-accent-foreground shadow-md">
+    <Card className="bg-card relative min-h-48 w-full overflow-hidden p-0 text-accent-foreground shadow-md">
       {/* Background */}
       <Image
         src={cardBg}

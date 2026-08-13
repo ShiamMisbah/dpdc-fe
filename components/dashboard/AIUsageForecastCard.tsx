@@ -65,7 +65,7 @@ const AIUsageForecastCard = (props: Props) => {
   );
 
   return (
-    <Card className="w-full max-w-lg p-4">
+    <Card className="flex w-full flex-col p-4">
       <CardHeader className="px-0">
         <CardAction>
           <Badge

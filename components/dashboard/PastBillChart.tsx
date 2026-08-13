@@ -68,7 +68,7 @@ const PastBillChart = (props: Props) => {
     const percentageChanged = getLastChange(chartData);
     
   return (
-    <Card className="w-full max-w-lg p-4">
+    <Card className="w-full p-4">
       <CardHeader className="flex flex-col items-stretch border-b sm:flex-row p-0">
         <div className="flex flex-1 flex-col justify-center gap-1 p-2">
           <CardTitle>Past Bills (last 6 Months)</CardTitle>
