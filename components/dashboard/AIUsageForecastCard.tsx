@@ -56,13 +56,21 @@ const AIUsageForecastCard = (props: Props) => {
 
   const isLow = !isThinking && daysLeft <= 7;
 
+  // A rough visual ceiling for the gauge — most balances here are sized to
+  // last somewhere around a month, so 30 days reads as "full."
+  const GAUGE_MAX_DAYS = 30;
+  const gaugePercent = Math.max(
+    0,
+    Math.min(100, (daysLeft / GAUGE_MAX_DAYS) * 100),
+  );
+
   return (
     <Card className="w-full max-w-lg p-4">
       <CardHeader className="px-0">
         <CardAction>
           <Badge
             variant="secondary"
-            className="gap-1 px-3 py-1.5 text-xs font-medium"
+            className="gap-1 border-primary/20 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary"
           >
             <Sparkles className="size-3.5" />
             AI Insight
@@ -83,23 +91,36 @@ const AIUsageForecastCard = (props: Props) => {
           </div>
         ) : (
           <>
-            <div className="flex items-baseline gap-2">
+            <div className="flex items-center gap-2">
               {isLow ? (
-                <BatteryWarning className="size-6 text-destructive" />
+                <BatteryWarning className="size-6 shrink-0 text-destructive" />
               ) : (
-                <BatteryCharging className="size-6 text-primary" />
+                <BatteryCharging className="size-6 shrink-0 text-primary" />
               )}
-              <span className="text-3xl font-bold">{daysLeft}</span>
+              <span className="text-3xl font-bold leading-none">
+                {daysLeft}
+              </span>
               <span className="text-lg text-muted-foreground">
                 day{daysLeft === 1 ? "" : "s"} left
               </span>
             </div>
 
-            <CardDescription className="mt-1">
+            <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">
+              <div
+                className={`h-full rounded-full transition-all ${isLow ? "bg-destructive" : "bg-primary"}`}
+                style={{ width: `${gaugePercent}%` }}
+              />
+            </div>
+
+            <CardDescription className="mt-2">
               Based on your average usage of ৳{avgDailyCost.toFixed(1)}/day
               over the last {recentMonths.length} month
               {recentMonths.length === 1 ? "" : "s"}.
             </CardDescription>
+
+            <p className="mt-1 text-xs text-muted-foreground/70">
+              Updated just now
+            </p>
           </>
         )}
       </CardContent>
