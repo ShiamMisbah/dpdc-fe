@@ -1,5 +1,7 @@
 import BalanceCard from '@/components/dashboard/BalanceCard';
 import NavButtonGroup from '@/components/dashboard/NavButtonGroup';
+import PastBillChart from '@/components/dashboard/PastBillChart';
+import UsageChart from '@/components/dashboard/UsageChart';
 import UtilitySelect from '@/components/dashboard/UtilitySelect';
 import React from 'react'
 
@@ -16,10 +18,10 @@ const page = (props: Props) => {
         <NavButtonGroup />
       </div>
       {/* dashboard Cards vertically */}
-      <div className="flex flex-col justify-start items-start">
+      <div className="flex flex-col justify-start items-start gap-3">
         <BalanceCard />
-        <div>Past Bills</div>
-        <div>Electrical Usage</div>
+        <PastBillChart />
+        <UsageChart />
       </div>
     </div>
   );

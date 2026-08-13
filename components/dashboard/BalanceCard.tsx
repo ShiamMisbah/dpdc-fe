@@ -2,14 +2,14 @@ import React from 'react'
 import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import cardBg from '@/assets/images/cardBg.jpg'
+import cardBg from '@/assets/images/cardBg.png'
 import Image from 'next/image';
 
 type Props = {}
 
 const BalanceCard = (props: Props) => {
   return (
-    <Card className="relative mx-auto min-h-48 w-full max-w-lg overflow-hidden p-0 text-accent-foreground shadow-md">
+    <Card className="bg-card relative min-h-48 w-full max-w-lg overflow-hidden p-0 text-accent-foreground shadow-md">
       {/* Background */}
       <Image
         src={cardBg}
@@ -21,7 +21,7 @@ const BalanceCard = (props: Props) => {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-background/60 backdrop-blur-[1px]" />
+      <div className="absolute inset-0 bg-card/60 backdrop-blur-[1px]" />
       {/* Content */}
       <div className="relative z-10 flex flex-1 flex-col justify-between gap-2 p-4">
         <div className="shimmer">
