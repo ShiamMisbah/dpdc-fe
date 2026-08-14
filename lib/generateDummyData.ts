@@ -3,7 +3,7 @@ type UsageData = {
   usage: number; // kWh
 };
 
-const generateDailyUsage = (startDate: string, days: number): UsageData[] => {
+export const generateDailyUsage = (startDate: string, days: number): UsageData[] => {
   const data: UsageData[] = [];
   const start = new Date(startDate);
 
@@ -33,5 +33,4 @@ const generateDailyUsage = (startDate: string, days: number): UsageData[] => {
   return data;
 };
 
-const dailyUsageData = generateDailyUsage("2026-01-01", 365);
-console.log(dailyUsageData);
+

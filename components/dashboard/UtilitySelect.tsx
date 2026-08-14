@@ -2,20 +2,20 @@
 
 import React from "react";
 import { useTheme } from "next-themes";
+import { Sun, Moon } from "lucide-react";
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
 
 type Props = {};
+
 const items = [
-  { label: "Light", value: "light" },
-  { label: "Dark", value: "dark" },
-  { label: "System", value: "system" },
+  { label: "Light", value: "light", icon: Sun },
+  { label: "Dark", value: "dark", icon: Moon },
 ];
 
 // Matches the defaultTheme prop on <ThemeProvider> in app/layout.tsx.
@@ -41,22 +41,28 @@ const UtilitySelect = (props: Props) => {
     if (value) setTheme(value);
   };
 
+  const activeTheme = mounted ? theme ?? DEFAULT_THEME : DEFAULT_THEME;
+  const ActiveIcon =
+    items.find((item) => item.value === activeTheme)?.icon ?? Sun;
+
   return (
-    <Select
-      value={mounted ? theme ?? DEFAULT_THEME : DEFAULT_THEME}
-      onValueChange={handleThemeChange}
-      items={items}
-    >
+    <Select value={activeTheme} onValueChange={handleThemeChange} items={items}>
       <SelectTrigger
-        size="md"
-        className="bg-card w-40 rounded-full text-md px-4 shadow-sm"
+        size="sm"
+        aria-label="Theme"
+        className="h-10 gap-1 rounded-full bg-card px-3 shadow-sm"
       >
-        <SelectValue placeholder="Theme" />
+        <ActiveIcon className="size-4" />
       </SelectTrigger>
-      <SelectContent alignItemWithTrigger={false} className=" rounded-lg">
+      <SelectContent
+        alignItemWithTrigger={false}
+        align="end"
+        className="w-36 rounded-lg"
+      >
         <SelectGroup>
           {items.map((item) => (
             <SelectItem key={item.value} value={item.value}>
+              <item.icon className="size-4" />
               {item.label}
             </SelectItem>
           ))}

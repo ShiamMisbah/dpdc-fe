@@ -4,6 +4,7 @@ import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import cardBg from '@/assets/images/cardBg.png'
 import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {}
 
@@ -39,7 +40,12 @@ const BalanceCard = (props: Props) => {
         </div>
 
         <CardFooter className="flex items-center justify-between border-none bg-transparent p-0">
-          <Button className="rounded-full px-6 py-4">Pay Now</Button>
+          <Button
+            className="rounded-full px-6 py-4"
+            render={<Link href="/rechage-now" target="_blank" rel="noopener noreferrer" />}
+          >
+            Recharge Now
+          </Button>
 
           <Button
             variant="outline"

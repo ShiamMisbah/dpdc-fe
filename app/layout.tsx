@@ -45,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           enableSystem
           disableTransitionOnChange
         >
-          <h1>DPDC Smart Meter Application</h1>
+          {/* <h1>DPDC Smart Meter Application</h1> */}
           {children}
         </ThemeProvider>
       </body>

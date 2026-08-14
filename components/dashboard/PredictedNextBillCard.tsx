@@ -85,7 +85,7 @@ const PredictedNextBillCard = (props: Props) => {
           </Badge>
         </CardAction>
 
-        <CardTitle>Predicted Next Bill</CardTitle>
+        <CardTitle>Predicted Next Recharge Amount</CardTitle>
       </CardHeader>
 
       <CardContent className="px-0">
