@@ -5,6 +5,7 @@ import { Badge } from '../ui/badge';
 import cardBg from '@/assets/images/cardBg.png'
 import Image from 'next/image';
 import Link from 'next/link';
+import LinkButton from '../shared/LinkButton';
 
 type Props = {}
 
@@ -17,7 +18,7 @@ const BalanceCard = (props: Props) => {
         alt=""
         fill
         priority
-        sizes='512'
+        sizes="512"
         className="absolute inset-0 object-cover"
       />
 
@@ -28,7 +29,9 @@ const BalanceCard = (props: Props) => {
         <div className="shimmer">
           <CardHeader className="px-0">
             <CardAction>
-              <Badge variant="destructive" className='text-md px-5 py-3'>PAID</Badge>
+              <Badge variant="destructive" className="text-md px-5 py-3">
+                PAID
+              </Badge>
             </CardAction>
 
             <CardTitle>Your Balance</CardTitle>
@@ -40,13 +43,7 @@ const BalanceCard = (props: Props) => {
         </div>
 
         <CardFooter className="flex items-center justify-between border-none bg-transparent p-0">
-          <Button
-            className="rounded-full px-6 py-4"
-            nativeButton={false}
-            render={<Link href="/rechage-now" target="_blank" rel="noopener noreferrer" />}
-          >
-            Recharge Now
-          </Button>
+          <LinkButton targetLink="/rechage-now" title="Recharge Now" />
 
           <Button
             variant="outline"

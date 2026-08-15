@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/chart";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { ArrowDown, ArrowUp, MoveUp } from "lucide-react";
+import ArrowLinkButton from "../shared/ArrowLinkButton";
 
 type Props = {};
 const chartData = [
@@ -69,7 +70,7 @@ const PastBillChart = (props: Props) => {
     
   return (
     <Card className="w-full p-4">
-      <CardHeader className="flex flex-col items-stretch border-b sm:flex-row p-0">
+      <CardHeader className="flex flex-col items-center border-b sm:flex-row p-0 gap-4">
         <div className="flex flex-1 flex-col justify-center gap-1 p-2">
           <CardTitle>Past Bills (last 6 Months)</CardTitle>
           <CardDescription>Showing Bills</CardDescription>
@@ -95,6 +96,7 @@ const PastBillChart = (props: Props) => {
             </div>
           </div>
         </div>
+        <ArrowLinkButton targetLink="/bills" ariaLabel="Go To Bills" direction="forward" />
       </CardHeader>
       <CardContent className="p-0">
         <ChartContainer config={chartConfig} className="min-h-[300px] w-full p-0">
