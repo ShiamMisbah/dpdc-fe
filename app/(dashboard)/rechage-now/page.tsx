@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import ArrowLinkButton from "@/components/shared/ArrowLinkButton";
 
 type Props = {};
 
@@ -25,7 +26,12 @@ const PAYMENT_METHODS = [
   { id: "bkash", label: "bKash", icon: Smartphone, accent: "bg-[#E2136E]" },
   { id: "nagad", label: "Nagad", icon: Smartphone, accent: "bg-[#F6921E]" },
   { id: "card", label: "Card", icon: CreditCard, accent: "bg-primary" },
-  { id: "bank", label: "Bank Transfer", icon: Landmark, accent: "bg-foreground/70" },
+  {
+    id: "bank",
+    label: "Bank Transfer",
+    icon: Landmark,
+    accent: "bg-foreground/70",
+  },
 ] as const;
 
 type PaymentMethodId = (typeof PAYMENT_METHODS)[number]["id"];
@@ -39,7 +45,9 @@ const ACCOUNT_NAME = "Rahim Uddin";
 const page = (props: Props) => {
   const [selectedPreset, setSelectedPreset] = useState<number | null>(1000);
   const [customAmount, setCustomAmount] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethodId | null>(null);
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethodId | null>(
+    null,
+  );
 
   const amount = useMemo(() => {
     if (customAmount.trim() !== "") {
@@ -72,16 +80,15 @@ const page = (props: Props) => {
       {/* Header */}
       <div className="mb-8 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <Button
-            variant="outline"
-            size="icon"
-            className="rounded-full"
-            render={<Link href="/dashboard" aria-label="Back to dashboard" />}
-          >
-            <ArrowLeft className="size-4" />
-          </Button>
+          <ArrowLinkButton
+            targetLink="/dashboard"
+            ariaLabel="Back to dashboard"
+            direction="backword"
+          />
           <div>
-            <h1 className="font-heading text-xl font-semibold">Recharge Balance</h1>
+            <h1 className="font-heading text-xl font-semibold">
+              Recharge Balance
+            </h1>
             <p className="text-sm text-muted-foreground">
               Top up your prepaid meter
             </p>
@@ -153,7 +160,7 @@ const page = (props: Props) => {
                     "h-10 rounded-full border px-5 text-sm font-medium transition-colors",
                     selectedPreset === preset && customAmount === ""
                       ? "border-primary bg-primary text-primary-foreground"
-                      : "border-input bg-card hover:bg-muted"
+                      : "border-input bg-card hover:bg-muted",
                   )}
                 >
                   ৳{preset}
@@ -198,13 +205,13 @@ const page = (props: Props) => {
                       "flex flex-col items-center gap-2 rounded-xl border p-3 text-center transition-colors",
                       isSelected
                         ? "border-primary ring-1 ring-primary"
-                        : "border-input bg-card hover:bg-muted"
+                        : "border-input bg-card hover:bg-muted",
                     )}
                   >
                     <span
                       className={cn(
                         "flex size-9 items-center justify-center rounded-full text-white",
-                        method.accent
+                        method.accent,
                       )}
                     >
                       <Icon className="size-4" />

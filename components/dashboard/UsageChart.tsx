@@ -2,6 +2,7 @@
 
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
@@ -78,36 +79,39 @@ const UsageChart = (props: Props) => {
   };
 
   return (
-    <Tabs
-      onValueChange={(value) => setDefaultReport(value)}
-      defaultValue="overview"
-      className="w-full"
-    >
-      <TabsList style={{ height: "50px" }} className="bg-card w-full py-2">
-        <TabsTrigger value="daily">Daily</TabsTrigger>
-        {/* <TabsTrigger value="weekly">Weekly</TabsTrigger> */}
-        <TabsTrigger value="monthly">Monthly</TabsTrigger>
-        <TabsTrigger value="yearly">Yearly</TabsTrigger>
-      </TabsList>
-      <TabsContent value="daily">
-        <Card>
-          <CardHeader>
-            <CardTitle>Daily</CardTitle>
-            <CardDescription>
-              <ReportDateSelector
-                period="daily"
-                value={reportDate}
-                onChange={setReportDate}
+    <Card>
+      <CardHeader>
+        <CardTitle>Electricity Usage</CardTitle>
+      </CardHeader>
+      <CardContent className="text-sm text-muted-foreground">
+        <Tabs
+          onValueChange={(value) => setDefaultReport(value)}
+          defaultValue="overview"
+          className="w-full bg-card"
+        >
+          <TabsList className="w-full">
+            <TabsTrigger value="daily">Daily</TabsTrigger>
+            {/* <TabsTrigger value="weekly">Weekly</TabsTrigger> */}
+            <TabsTrigger value="monthly">Monthly</TabsTrigger>
+            <TabsTrigger value="yearly">Yearly</TabsTrigger>
+          </TabsList>
+          <TabsContent value="daily">
+            <Card>
+              <CardHeader className="flex justify-between items-center">
+                <CardTitle>Daily</CardTitle>
+                <ReportDateSelector
+                  period="daily"
+                  value={reportDate}
+                  onChange={setReportDate}
+                />
+              </CardHeader>
+              <YearlyUsageChart
+                chartData={getUsagereport("daily", filteredData)}
+                reportDuration="daily"
               />
-            </CardDescription>
-          </CardHeader>
-          <YearlyUsageChart
-            chartData={getUsagereport("daily", filteredData)}
-            reportDuration="daily"
-          />
-        </Card>
-      </TabsContent>
-      {/* <TabsContent value="weekly">
+            </Card>
+          </TabsContent>
+          {/* <TabsContent value="weekly">
           <Card>
             <CardHeader>
               <CardTitle>Analytics</CardTitle>
@@ -124,47 +128,45 @@ const UsageChart = (props: Props) => {
             </CardContent>
           </Card>
         </TabsContent> */}
-      <TabsContent value="monthly">
-        <Card>
-          <CardHeader>
-            <CardTitle>Monthly</CardTitle>
-            <CardDescription>
-              <ReportDateSelector
-                period="monthly"
-                value={reportDate}
-                onChange={setReportDate}
-              />
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            <YearlyUsageChart
-              chartData={getUsagereport("monthly", filteredData)}
-              reportDuration="monthly"
-            />
-          </CardContent>
-        </Card>
-      </TabsContent>
-      <TabsContent value="yearly">
-        <Card>
-          <CardHeader>
-            <CardTitle>Yearly</CardTitle>
-            <CardDescription>
-              <ReportDateSelector
-                period="yearly"
-                value={reportDate}
-                onChange={setReportDate}
-              />
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            <YearlyUsageChart
-              chartData={getUsagereport("yearly", filteredData)}
-              reportDuration="yearly"
-            />
-          </CardContent>
-        </Card>
-      </TabsContent>
-    </Tabs>
+          <TabsContent value="monthly">
+            <Card>
+              <CardHeader className="flex justify-between items-center">
+                <CardTitle>Monthly</CardTitle>
+                <ReportDateSelector
+                  period="monthly"
+                  value={reportDate}
+                  onChange={setReportDate}
+                />
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <YearlyUsageChart
+                  chartData={getUsagereport("monthly", filteredData)}
+                  reportDuration="monthly"
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="yearly">
+            <Card>
+              <CardHeader className="flex justify-between items-center">
+                <CardTitle>Yearly</CardTitle>
+                <ReportDateSelector
+                  period="yearly"
+                  value={reportDate}
+                  onChange={setReportDate}
+                />
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <YearlyUsageChart
+                  chartData={getUsagereport("yearly", filteredData)}
+                  reportDuration="yearly"
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+      </CardContent>
+    </Card>
   );
 };
 
