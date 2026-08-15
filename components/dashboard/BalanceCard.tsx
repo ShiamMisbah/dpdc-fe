@@ -42,6 +42,7 @@ const BalanceCard = (props: Props) => {
         <CardFooter className="flex items-center justify-between border-none bg-transparent p-0">
           <Button
             className="rounded-full px-6 py-4"
+            nativeButton={false}
             render={<Link href="/rechage-now" target="_blank" rel="noopener noreferrer" />}
           >
             Recharge Now

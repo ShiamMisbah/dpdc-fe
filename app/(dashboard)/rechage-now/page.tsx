@@ -76,6 +76,7 @@ const page = (props: Props) => {
             variant="outline"
             size="icon"
             className="rounded-full"
+            nativeButton={false}
             render={<Link href="/dashboard" aria-label="Back to dashboard" />}
           >
             <ArrowLeft className="size-4" />
