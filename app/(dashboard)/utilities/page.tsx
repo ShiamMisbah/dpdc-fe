@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const page = (props: Props) => {
   return (
-    <div>utilities page</div>
-  )
-}
+    <div className="mx-auto w-full max-w-6xl p-4 md:p-6">utilities page</div>
+  );
+};
 
-export default page
+export default page;
