@@ -43,7 +43,7 @@ const BalanceCard = (props: Props) => {
         </div>
 
         <CardFooter className="flex items-center justify-between border-none bg-transparent p-0">
-          <LinkButton targetLink="/rechage-now" title="Recharge Now" />
+          <LinkButton targetLink="/user/rechage-now" title="Recharge Now" />
 
           <Button
             variant="outline"

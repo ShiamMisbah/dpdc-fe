@@ -33,7 +33,7 @@ const ProfileDropdownMenu = (props: Props) => {
           <UserIcon />
           Profile
         </DropdownMenuItem>
-        <Link href="/utilities" aria-label="Go To Utilities">
+        <Link href="/user/utilities" aria-label="Go To Utilities">
           <DropdownMenuItem>
             <Lightbulb />
             Utilities

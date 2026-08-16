@@ -9,7 +9,7 @@ import UtilitySelect from "@/components/dashboard/UtilitySelect";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { generateDailyUsage } from "../../../lib/generateDummyData";
+import { generateDailyUsage } from "../../../../lib/generateDummyData";
 import DarkModeSwitch from "@/components/nav/DarkModeSwitch";
 import Navbar from "@/components/nav/Navbar";
 
@@ -17,9 +17,9 @@ type Props = {};
 
 const page = (props: Props) => {
   return (
-    <div className="mx-auto w-full max-w-6xl p-4 md:p-6">
+    <div className="mx-auto w-full max-w-6xl">
       {/* Dashboard Nav bar */}
-      <Navbar />
+      
 
       {/* Section label */}
       <h2 className="mb-4 text-sm font-medium text-muted-foreground">

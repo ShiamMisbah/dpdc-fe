@@ -51,6 +51,6 @@ const chartConfig = {
 
 export default function Home() {
   return (
-    redirect("/dashboard")
+    redirect("/user/dashboard")
   )
 }

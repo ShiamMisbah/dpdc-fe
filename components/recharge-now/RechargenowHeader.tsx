@@ -10,7 +10,7 @@ const RechargenowHeader = ({currentBalance}: Props) => {
     <div className="mb-8 flex items-center justify-between gap-4">
       <div className="flex items-center gap-3">
         <ArrowLinkButton
-          targetLink="/dashboard"
+          targetLink="/user/dashboard"
           ariaLabel="Back to dashboard"
           direction="backword"
         />
