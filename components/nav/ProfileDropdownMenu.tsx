@@ -28,7 +28,7 @@ const ProfileDropdownMenu = (props: Props) => {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-full pr-4 mt-2">
+      <DropdownMenuContent className="w-full mt-2">
         <DropdownMenuItem>
           <UserIcon />
           Profile

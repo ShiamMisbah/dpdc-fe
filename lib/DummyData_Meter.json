@@ -1,0 +1,50 @@
+[
+  {
+    "meterNumber": "MTR-102938",
+    "activeStatus": true,
+    "lastRecharged": "2026-08-12",
+    "currentBalance": 2450.00,
+    "meterReading": 12845,
+    "address": "123 Dhaka Road, Dhanmondi, Dhaka"
+  },
+  {
+    "meterNumber": "MTR-284751",
+    "activeStatus": true,
+    "lastRecharged": "2026-08-10",
+    "currentBalance": 1875.50,
+    "meterReading": 9632,
+    "address": "45 Lake Drive, Gulshan, Dhaka"
+  },
+  {
+    "meterNumber": "MTR-391624",
+    "activeStatus": false,
+    "lastRecharged": "2026-07-28",
+    "currentBalance": 320.75,
+    "meterReading": 18421,
+    "address": "78 Station Road, Uttara, Dhaka"
+  },
+  {
+    "meterNumber": "MTR-475819",
+    "activeStatus": true,
+    "lastRecharged": "2026-08-14",
+    "currentBalance": 4120.00,
+    "meterReading": 7528,
+    "address": "21 Main Road, Mirpur, Dhaka"
+  },
+  {
+    "meterNumber": "MTR-583246",
+    "activeStatus": true,
+    "lastRecharged": "2026-08-08",
+    "currentBalance": 965.25,
+    "meterReading": 14673,
+    "address": "9 College Road, Mohammadpur, Dhaka"
+  },
+  {
+    "meterNumber": "MTR-716395",
+    "activeStatus": false,
+    "lastRecharged": "2026-07-19",
+    "currentBalance": 145.00,
+    "meterReading": 22109,
+    "address": "56 Green Road, Farmgate, Dhaka"
+  }
+]
