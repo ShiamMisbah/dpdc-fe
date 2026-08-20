@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from '../ui/button';
 import { Bell } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import ProfileDropdownMenu from './ProfileDropdownMenu';
 
 type Props = {}
 
@@ -14,12 +15,7 @@ const NavButtonGroup = (props: Props) => {
       >
         <Bell className="size-5" />
       </Button>
-      <Button variant="outline" className="size-10 rounded-full p-0 shadow-sm">
-        <Avatar className="w-full h-full">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-      </Button>
+      <ProfileDropdownMenu />
     </div>
   );
 }

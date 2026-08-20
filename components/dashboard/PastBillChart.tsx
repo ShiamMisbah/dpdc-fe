@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/chart";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { ArrowDown, ArrowUp, MoveUp } from "lucide-react";
+import ArrowLinkButton from "../shared/ArrowLinkButton";
 
 type Props = {};
 const chartData = [
@@ -69,35 +70,41 @@ const PastBillChart = (props: Props) => {
     
   return (
     <Card className="w-full p-4">
-      <CardHeader className="flex flex-col items-stretch border-b sm:flex-row p-0">
+      <CardHeader className="flex items-center border-b flex-row p-0 gap-4">
         <div className="flex flex-1 flex-col justify-center gap-1 p-2">
           <CardTitle>Past Bills (last 6 Months)</CardTitle>
           <CardDescription>Showing Bills</CardDescription>
         </div>
-        <div className="flex">
-          <div className="p-2 relative z-30 flex flex-1 flex-col justify-center gap-1 border-t text-left even:border-l data-[active=true]:bg-muted/50 sm:border-t-0 sm:border-l">
-            <div>
-              <div className="text-xs text-muted-foreground">
-                {`Bill - ${maxBilledMonth.month}`}
-              </div>
-            </div>
-            <div
-              className={`flex justify-start items-center gap-1 ${percentageChanged.direction === "increase" ? "text-primary" : "text-destructive"}`}
-            >
-              <div className="text-xs">
-                {`Change - ${percentageChanged.percentage}%`}{" "}
-              </div>
-              {percentageChanged.direction === "increase" ? (
-                <ArrowUp className="size-4" />
-              ) : (
-                <ArrowDown className="size-4" />
-              )}
+        <div className="p-2 relative z-30 flex flex-1 flex-col justify-center gap-1 text-left data-[active=true]:bg-muted/50 border-l">
+          <div>
+            <div className="text-xs text-muted-foreground">
+              {`Bill - ${maxBilledMonth.month}`}
             </div>
           </div>
+          <div
+            className={`flex justify-start items-center gap-1 ${percentageChanged.direction === "increase" ? "text-primary" : "text-destructive"}`}
+          >
+            <div className="text-xs">
+              {`Change - ${percentageChanged.percentage}%`}{" "}
+            </div>
+            {percentageChanged.direction === "increase" ? (
+              <ArrowUp className="size-4" />
+            ) : (
+              <ArrowDown className="size-4" />
+            )}
+          </div>
         </div>
+        <ArrowLinkButton
+          targetLink="/user/bills"
+          ariaLabel="Go To Bills"
+          direction="forward"
+        />
       </CardHeader>
       <CardContent className="p-0">
-        <ChartContainer config={chartConfig} className="min-h-[300px] w-full p-0">
+        <ChartContainer
+          config={chartConfig}
+          className="min-h-[300px] w-full p-0"
+        >
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={true} horizontal={true} />
             <XAxis
