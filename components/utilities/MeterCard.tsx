@@ -1,3 +1,5 @@
+"use client"
+
 import React, { act } from 'react'
 import { MoreHorizontal, Plus, Pencil, Star, Trash2 } from "lucide-react";
 
@@ -47,15 +49,8 @@ const MeterCard = ({activeStatus, address, currentBalance, lastRecharged, meterN
 
           {/* Three-dot menu */}
           <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="size-8 rounded-full"
-              >
-                <MoreHorizontal className="size-4" />
-                <span className="sr-only">Meter options</span>
-              </Button>
+            <DropdownMenuTrigger className="flex flex-col justify-center items-center size-8 rounded-full">
+              <MoreHorizontal className="size-4" />
             </DropdownMenuTrigger>
 
             <DropdownMenuContent className="w-full">
@@ -84,7 +79,9 @@ const MeterCard = ({activeStatus, address, currentBalance, lastRecharged, meterN
       <CardContent className="space-y-1 p-0">
         <p className="text-sm text-muted-foreground">Current Balance</p>
 
-        <p className="text-3xl font-semibold tracking-tight">৳ {currentBalance}</p>
+        <p className="text-3xl font-semibold tracking-tight">
+          ৳ {currentBalance}
+        </p>
       </CardContent>
 
       {/* Meter details */}
