@@ -1,3 +1,5 @@
+import { Meter } from "../utility_accounts/types";
+
 export interface RegisterPayload {
   firstName: string;
   lastName: string;
@@ -19,10 +21,24 @@ export interface LoginPayload {
   password: string;
 }
 
-export interface Loginresponse {
+export interface LoginResponse {
   seccess: boolean;
   message: string;
-  data?: {
-    userData: string;
-  }
+  data: LoggedInUser;
+}
+
+export interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  password: string;
+}
+
+export interface LoggedInUser {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  MeterList: Meter[];
 }

@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { RegisterFormData, registerSchema } from '@/features/auth/schemas';
-import React from 'react'
+import { RegisterFormData, registerSchema } from "@/features/auth/schemas";
+import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Field,
@@ -12,8 +12,8 @@ import {
   FieldLegend,
   FieldSeparator,
   FieldSet,
-} from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -21,21 +21,21 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
-import { Button } from "@/components/ui/button"
-import { Controller, useForm } from 'react-hook-form';
-import { useRegister } from '@/features/auth/hooks';
-import { RegisterPayload } from '@/features/auth/types';
-import PasswordForm from '@/components/auth/register/PasswordForm';
-import DetailsForm from '@/components/auth/register/DetailsForm';
-import Link from 'next/link';
-import FooterButton from '@/components/auth/FooterButton';
+import { Button } from "@/components/ui/button";
+import { Controller, useForm } from "react-hook-form";
+import { useRegister } from "@/features/auth/hooks";
+import { RegisterPayload } from "@/features/auth/types";
+import PasswordForm from "@/components/auth/register/PasswordForm";
+import DetailsForm from "@/components/auth/register/DetailsForm";
+import Link from "next/link";
+import FooterButton from "@/components/auth/FooterButton";
 
-type Props = {}
+type Props = {};
 
 const page = (props: Props) => {
-  const registerMutate = useRegister()
+  const registerMutate = useRegister();
   const form = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -44,15 +44,15 @@ const page = (props: Props) => {
       email: "",
       phoneNumber: "",
       password: "",
-      confirmPassword: ""
-    }
-  })
+      confirmPassword: "",
+    },
+  });
 
   const onSubmit = (data: RegisterFormData) => {
     console.log("Sending to Register Hook", data);
     const { confirmPassword, ...sentData } = data;
     registerMutate.mutate(sentData);
-  }
+  };
   return (
     <div className="w-full">
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -69,11 +69,15 @@ const page = (props: Props) => {
             <PasswordForm control={form.control} />
           </FieldGroup>
 
-          <FooterButton link='/auth/login' linkLabel='Already Registered' />
+          <FooterButton
+            submitTitle="REGISTER"
+            link="/auth/login"
+            linkLabel="Already Registered"
+          />
         </FieldSet>
       </form>
     </div>
   );
-}
+};
 
-export default page
+export default page;

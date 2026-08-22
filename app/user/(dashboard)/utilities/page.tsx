@@ -10,8 +10,9 @@ import {
 } from "@/components/ui/card";
 import MeterCard from "@/components/utilities/MeterCard";
 import React from "react";
-import DummyData_Meter from "@/lib/DummyData_Meter.json";
+import DummyData_Meter from "@/lib/Temporary_Data/DummyData_Meter.json"
 import AddMeterCard from "@/components/utilities/AddMeterCard";
+import { useLoggedInUser } from "@/context/UserContext";
 
 type Props = {};
 

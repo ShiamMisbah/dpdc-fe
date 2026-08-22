@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/nav/Navbar";
 import Providers from "./providers";
+import { UserProvider } from "@/context/UserContext";
+import { Toaster } from "@/components/ui/toast";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -48,7 +50,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <UserProvider>
+              {children}
+              <Toaster  />
+            </UserProvider>
           </ThemeProvider>
         </Providers>
       </body>

@@ -24,26 +24,22 @@ const AddUtilityDrawer = () => {
       showSwipeHandle={true}
       onOpenChange={setAddutilityOpen}
       swipeDirection={isMobile ? "down" : "right"}
-      
     >
-      <DrawerTrigger
-        className=""
-        render={
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="flex size-12 items-center justify-center rounded-full bg-muted">
-              <Plus className="size-5" />
-            </div>
+      <DrawerTrigger className="">
+        <div className="flex flex-col items-center gap-3 text-center">
+          <Button variant="outline" className="cursor-pointer flex size-12 items-center justify-center rounded-full hover:shadow-md">
+            <Plus className="size-5 text-primary" />
+          </Button>
 
-            <div>
-              <p className="font-medium">Add Meter</p>
+          <div>
+            <p className="font-medium">Add Meter</p>
 
-              <p className="mt-1 text-sm text-muted-foreground">
-                Add another utility meter to your account
-              </p>
-            </div>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Add another utility meter to your account
+            </p>
           </div>
-        }
-      />
+        </div>
+      </DrawerTrigger>
       <DrawerContent className={`${isMobile ? "h-[70vh]" : ""}`}>
         <DrawerHeader>
           <DrawerTitle>Add New Utility</DrawerTitle>
@@ -54,7 +50,6 @@ const AddUtilityDrawer = () => {
         <div className="flex-1 p-4">
           <AddUtilityDrawerForm />
         </div>
-        
       </DrawerContent>
     </Drawer>
   );

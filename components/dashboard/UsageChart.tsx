@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import DummyData from "@/lib/DummyData.json";
+import DummyData from "@/lib/Temporary_Data/DummyData.json";
 import {
   getUsagereport,
   Period,

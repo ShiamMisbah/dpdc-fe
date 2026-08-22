@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import FooterButton from "@/components/auth/FooterButton";
 import LoginPasswordForm from "@/components/auth/login/LoginPasswordForm";
@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useLogin } from "@/features/auth/hooks";
 import { LoginFormData, loginSchema } from "@/features/auth/schemas";
+import { promiseToast } from "@/lib/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -22,7 +23,7 @@ import { Controller, useForm } from "react-hook-form";
 type Props = {};
 
 const page = (props: Props) => {
-  const loginMutate = useLogin()
+  const loginMutate = useLogin();
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -31,9 +32,28 @@ const page = (props: Props) => {
     },
   });
 
-  const onSubmit = (data: LoginFormData) => {
+  const onSubmit = async(data: LoginFormData) => {
     console.log("Sending to Login Hook", data);
-    loginMutate.mutate(data);
+
+    const promise = loginMutate.mutateAsync(data);
+
+    promiseToast(promise, {
+      loading: "Logging you in...",
+      success: "Login successful!",
+      error: "Login failed.",
+    });
+
+    try {
+      const response = await promise;
+
+      console.log("Login response:", response);
+
+      // Do something with the returned data
+      // setUser(response.user);
+      // router.push("/dashboard");
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className="w-full">
@@ -41,9 +61,7 @@ const page = (props: Props) => {
         <FieldSet>
           <FieldLegend>Welcome Back, User</FieldLegend>
 
-          <FieldDescription>
-            Enter details to login.
-          </FieldDescription>
+          <FieldDescription>Enter details to login.</FieldDescription>
 
           <FieldGroup className="grid grid-cols-1 md:grid-cols-2">
             <Controller
@@ -73,6 +91,7 @@ const page = (props: Props) => {
           </FieldGroup>
 
           <FooterButton
+            submitTitle="Log IN"
             link="/auth/register"
             linkLabel="Do not have an account"
           />

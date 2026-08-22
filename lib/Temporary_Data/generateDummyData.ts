@@ -3,6 +3,13 @@ type UsageData = {
   usage: number; // kWh
 };
 
+interface MonthlyBillData {
+  date: string;
+  amount: number;
+}
+
+// generateDailyUsage("2026-08-01", 30)
+
 export const generateDailyUsage = (startDate: string, days: number): UsageData[] => {
   const data: UsageData[] = [];
   const start = new Date(startDate);
@@ -27,6 +34,33 @@ export const generateDailyUsage = (startDate: string, days: number): UsageData[]
     data.push({
       date: date.toISOString().split("T")[0],
       usage: Number(Math.max(4, usage).toFixed(2)),
+    });
+  }
+
+  return data;
+};
+
+export const generateMonthlyBills = (
+  startDate: string,
+  months: number,
+): MonthlyBillData[] => {
+  const data: MonthlyBillData[] = [];
+  const start = new Date(startDate);
+
+  for (let i = 0; i < months; i++) {
+    const date = new Date(start);
+    date.setMonth(start.getMonth() + i);
+
+    let amount = 800 + Math.random() * 500;
+
+    amount += (Math.random() - 0.5) * 200;
+
+    data.push({
+      date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+        2,
+        "0",
+      )}`,
+      amount: Number(Math.max(400, amount).toFixed(2)),
     });
   }
 
