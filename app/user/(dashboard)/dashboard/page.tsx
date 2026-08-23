@@ -1,3 +1,5 @@
+"use client"
+
 import BalanceCard from "@/components/dashboard/BalanceCard";
 import AIUsageForecastCard from "@/components/dashboard/AIUsageForecastCard";
 import AnomalyDetectionCard from "@/components/dashboard/AnomalyDetectionCard";
@@ -8,18 +10,38 @@ import UsageChart from "@/components/dashboard/UsageChart";
 import UtilitySelect from "@/components/dashboard/UtilitySelect";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { generateDailyUsage, generateMonthlyBills } from "../../../../lib/Temporary_Data/generateDummyData";
 import DarkModeSwitch from "@/components/nav/DarkModeSwitch";
 import Navbar from "@/components/nav/Navbar";
+import { useLoggedInUser } from "@/context/UserContext";
+import { useSelectedMeter } from "@/context/SelectedMeterContext";
+import { getLastMonthsBillChartData } from "@/lib/BillCalculationFunctions";
 
 type Props = {};
 
 const page = (props: Props) => {  
+    const { selectedMeter } = useSelectedMeter();
+    const [lastSixMonthBill, setLastSixMonthBill] = useState<{
+      month: string;
+      bill: number;
+    }[] | []>([]);
+    console.log(selectedMeter);
+
+    useEffect(() => {
+      if (selectedMeter){
+        setLastSixMonthBill(getLastMonthsBillChartData(
+          selectedMeter.bill_list,
+          6,
+        ));
+      }
+    }, [selectedMeter])
+
+  if (!selectedMeter) return <>Loading</>
+
   return (
     <div className="mx-auto w-full max-w-6xl">
       {/* Dashboard Nav bar */}
-      
 
       {/* Section label */}
       <h2 className="mb-4 text-sm font-medium text-muted-foreground">
@@ -30,14 +52,18 @@ const page = (props: Props) => {
           width; Usage Forecast + Usage Chart share the right column's. */}
       <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-2">
         <div className="flex flex-col gap-4">
-          <BalanceCard />
+          <BalanceCard
+            currentBalance={selectedMeter.currentBalance}
+            nextDue={selectedMeter.nextDue}
+            paymentStatus={selectedMeter.paymentStatus}
+          />
           <PredictedNextBillCard />
-          <PastBillChart />
+          {lastSixMonthBill.length > 0 && <PastBillChart billList={lastSixMonthBill} />}
         </div>
         <div className="flex flex-col gap-4">
           <AIUsageForecastCard />
           <AnomalyDetectionCard />
-          <UsageChart />
+          {selectedMeter.usage_list.length > 0 && <UsageChart usageList={selectedMeter.usage_list} />}
         </div>
       </div>
     </div>

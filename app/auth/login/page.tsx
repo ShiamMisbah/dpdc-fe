@@ -13,16 +13,21 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { useLoggedInUser } from "@/context/UserContext";
 import { useLogin } from "@/features/auth/hooks";
 import { LoginFormData, loginSchema } from "@/features/auth/schemas";
+import { LoggedInUser } from "@/features/auth/types";
 import { promiseToast } from "@/lib/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
 type Props = {};
 
 const page = (props: Props) => {
+  const {user, setUser} = useLoggedInUser()
+  const router = useRouter()
   const loginMutate = useLogin();
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -46,11 +51,12 @@ const page = (props: Props) => {
     try {
       const response = await promise;
 
-      console.log("Login response:", response);
+      const loggedInUser: LoggedInUser = response.data;
+      localStorage.setItem("DPDC-UserData", JSON.stringify(loggedInUser));
 
       // Do something with the returned data
-      // setUser(response.user);
-      // router.push("/dashboard");
+      setUser(loggedInUser);
+      router.push("/user/dashboard");
     } catch (error) {
       console.error(error);
     }

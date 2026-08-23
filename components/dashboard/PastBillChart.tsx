@@ -14,15 +14,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui
 import { ArrowDown, ArrowUp, MoveUp } from "lucide-react";
 import ArrowLinkButton from "../shared/ArrowLinkButton";
 
-type Props = {};
-const chartData = [
-  { month: "January", bill: 186},
-  { month: "February", bill: 305},
-  { month: "March", bill: 237},
-  { month: "April", bill: 73},
-  { month: "May", bill: 209},
-  { month: "June", bill: 500},
-];
+type Props = {
+  billList: { month: string; bill: number }[];
+};
 
 const chartConfig = {
   bill: {
@@ -31,16 +25,20 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const PastBillChart = (props: Props) => {
-    const getMaxBilledMonth = (data: typeof chartData) => {
+
+
+const PastBillChart = ({billList}: Props) => {
+  console.log(billList);
+  
+    const getMaxBilledMonth = (data: typeof billList) => {
       return data.reduce((max, current) =>
         current.bill > max.bill ? current : max,
       );
     };
 
-    const maxBilledMonth = getMaxBilledMonth(chartData);
+    const maxBilledMonth = getMaxBilledMonth(billList);
 
-    const getLastChange = (data: typeof chartData) => {
+    const getLastChange = (data: typeof billList) => {
       if (data.length < 2) {
         return {
           percentage: 0,
@@ -66,7 +64,7 @@ const PastBillChart = (props: Props) => {
       };
     };
 
-    const percentageChanged = getLastChange(chartData);
+    const percentageChanged = getLastChange(billList);
     
   return (
     <Card className="w-full p-4">
@@ -78,7 +76,7 @@ const PastBillChart = (props: Props) => {
         <div className="p-2 relative z-30 flex flex-1 flex-col justify-center gap-1 text-left data-[active=true]:bg-muted/50 border-l">
           <div>
             <div className="text-xs text-muted-foreground">
-              {`Bill - ${maxBilledMonth.month}`}
+              {`Bill - ${maxBilledMonth.month} (Highest)`}
             </div>
           </div>
           <div
@@ -105,7 +103,7 @@ const PastBillChart = (props: Props) => {
           config={chartConfig}
           className="min-h-[300px] w-full p-0"
         >
-          <BarChart accessibilityLayer data={chartData}>
+          <BarChart accessibilityLayer data={billList}>
             <CartesianGrid vertical={true} horizontal={true} />
             <XAxis
               dataKey="month"

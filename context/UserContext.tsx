@@ -1,7 +1,7 @@
 "use client"
 
 import { LoggedInUser } from "@/features/auth/types";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 interface UserContextType {
     user: LoggedInUser | null;
@@ -10,15 +10,29 @@ interface UserContextType {
 
 const UserContext = createContext<UserContextType | undefined> (undefined)
 
-export const UserProvider = ({children}: {children: ReactNode}) => {
-    const [user, setUser] = useState<LoggedInUser | null>(null)
+export const UserProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<LoggedInUser | null>(null)
 
-    return (
-        <UserContext.Provider value={{user, setUser}}>
-            {children}
-        </UserContext.Provider>
-    )
-}
+  useEffect(() => {
+    const storedUser = localStorage.getItem("DPDC-UserData");
+
+    if (!storedUser) return;
+
+    try {
+      const parsedUser: LoggedInUser = JSON.parse(storedUser);
+      setUser(parsedUser);
+    } catch (error) {
+      console.error("Failed to parse stored user:", error);
+      localStorage.removeItem("DPDC-UserData");
+    }
+  }, []);
+
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
 
 export const useLoggedInUser = () => {
     const context = useContext(UserContext);

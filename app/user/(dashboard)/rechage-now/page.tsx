@@ -23,6 +23,8 @@ import RechargeAccountCard from "@/components/recharge-now/RechargeAccountCard";
 import RechargeAmmountSelectionPanel from "@/components/recharge-now/RechargeAmmountSelectionPanel";
 import RechargePaymentMethod, { PAYMENT_METHODS, PaymentMethodId } from "@/components/recharge-now/RechargePaymentMethod";
 import RechargeOrderSummary from "@/components/recharge-now/RechargeOrderSummary";
+import { useLoggedInUser } from "@/context/UserContext";
+import { useSelectedMeter } from "@/context/SelectedMeterContext";
 
 type Props = {};
 
@@ -33,6 +35,9 @@ const METER_ID = "DPDC-4821-0073";
 const ACCOUNT_NAME = "Rahim Uddin";
 
 const page = (props: Props) => {
+  const {user} = useLoggedInUser()
+  const {selectedMeter} = useSelectedMeter()
+
   const [selectedPreset, setSelectedPreset] = useState<number | null>(1000);
   const [customAmount, setCustomAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethodId | null>(
@@ -65,10 +70,12 @@ const page = (props: Props) => {
     console.log("Recharge requested:", { amount, paymentMethod });
   };
 
+  if (!user || !selectedMeter) return <>Loading</>;
+
   return (
     <div className="mx-auto w-full">
       {/* Header */}
-      <RechargenowHeader currentBalance={CURRENT_BALANCE} />
+      <RechargenowHeader currentBalance={selectedMeter.currentBalance} />
 
       <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-3">
         {/* Left column — meter card + amount + payment */}
@@ -77,7 +84,7 @@ const page = (props: Props) => {
               a perforated split card rather than a generic "account info"
               panel. Right stub now signals live/automatic top-up instead
               of a manual token, since this system syncs automatically. */}
-          <RechargeAccountCard meterId={METER_ID} accountName={ACCOUNT_NAME} />
+          <RechargeAccountCard meterId={selectedMeter.meterNumber} accountName={`${user.firstName} ${user.lastName}`} />
 
           {/* Amount selection */}
           <RechargeAmmountSelectionPanel
