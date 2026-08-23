@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import DummyData from "@/lib/DummyData.json";
+import DummyData from "@/lib/Temporary_Data/DummyData.json";
 import {
   getUsagereport,
   Period,
@@ -26,7 +26,9 @@ import {
 } from "../ui/select";
 import { ReportDateSelector } from "./ReportDateSelector";
 
-type Props = {};
+type Props = {
+  usageList: UsageData[];
+};
 
 type MonthYear = {
   month: string;
@@ -49,7 +51,7 @@ const getMonthlyUsage = (
   });
 };
 
-const UsageChart = (props: Props) => {
+const UsageChart = ({ usageList }: Props) => {
   const now = new Date();
   const [period, setPeriod] = useState<Period>("daily");
   const [reportDate, setReportDate] = useState<MonthYear>({
@@ -58,16 +60,23 @@ const UsageChart = (props: Props) => {
   });
 
   const [filteredData, setFilteredData] = useState<UsageData[]>(
-    getMonthlyUsage(DummyData, reportDate, false),
-  );
+    getMonthlyUsage(usageList, reportDate, false),
+  );  
 
-  useEffect(() => {    
+  console.log(usageList);
+  
+
+  useEffect(() => {
     if (period === "daily")
-      setFilteredData(getMonthlyUsage(DummyData, reportDate, false));
-    else if (period === "monthly") setFilteredData(getMonthlyUsage(DummyData, reportDate, true));
-    else setFilteredData(DummyData)
-    
+      setFilteredData(getMonthlyUsage(usageList, reportDate, false));
+    else if (period === "monthly")
+      setFilteredData(getMonthlyUsage(usageList, reportDate, true));
+    else setFilteredData(usageList);
   }, [reportDate, period]);
+
+  useEffect(() => {
+    setFilteredData(getMonthlyUsage(usageList, reportDate, false));
+  }, [usageList]);
 
   const setDefaultReport = (value: Period) => {
     const now = new Date();
@@ -111,23 +120,6 @@ const UsageChart = (props: Props) => {
               />
             </Card>
           </TabsContent>
-          {/* <TabsContent value="weekly">
-          <Card>
-            <CardHeader>
-              <CardTitle>Analytics</CardTitle>
-              <CardDescription>
-                Track performance and user engagement metrics. Monitor trends
-                and identify growth opportunities.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
-              <YearlyUsageChart
-                chartData={getUsagereport("weekly", DummyData)}
-                reportDuration="week"
-              />
-            </CardContent>
-          </Card>
-        </TabsContent> */}
           <TabsContent value="monthly">
             <Card>
               <CardHeader className="flex justify-between items-center">
