@@ -28,7 +28,6 @@ const chartConfig = {
 
 
 const PastBillChart = ({billList}: Props) => {
-  console.log(billList);
   
     const getMaxBilledMonth = (data: typeof billList) => {
       return data.reduce((max, current) =>

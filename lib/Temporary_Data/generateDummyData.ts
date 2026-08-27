@@ -40,27 +40,83 @@ export const generateDailyUsage = (startDate: string, days: number): UsageData[]
   return data;
 };
 
+export interface Bill {
+  userId: string;
+  meterNumber: string;
+  month: string;
+  year: string;
+  usage: number;
+  paymentAmount: number;
+  paidBy: string;
+  paymentStatus: boolean;
+  currentMonth: boolean;
+  dueData: string;
+  paymentDate: string;
+}
+
 export const generateMonthlyBills = (
   startDate: string,
   months: number,
-): MonthlyBillData[] => {
-  const data: MonthlyBillData[] = [];
+  userId: string,
+  meterNumber: string,
+): Bill[] => {
+  const data: Bill[] = [];
   const start = new Date(startDate);
+
+  const today = new Date();
 
   for (let i = 0; i < months; i++) {
     const date = new Date(start);
     date.setMonth(start.getMonth() + i);
 
-    let amount = 800 + Math.random() * 500;
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = String(date.getFullYear());
 
-    amount += (Math.random() - 0.5) * 200;
+    // Generate electricity usage
+    const usage = Number((150 + Math.random() * 250).toFixed(2));
+
+    // Generate bill amount based on usage
+    const ratePerUnit = 8;
+    const paymentAmount = Number(Math.max(400, usage * ratePerUnit).toFixed(2));
+
+    // Current month
+    const currentMonth =
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear();
+
+    // Example: bill due on the 10th of the following month
+    const dueDate = new Date(date);
+    dueDate.setMonth(dueDate.getMonth() + 1);
+    dueDate.setDate(10);
+
+    // Random payment status for past months
+    const isPastMonth =
+      date < new Date(today.getFullYear(), today.getMonth(), 1);
+
+    const paymentStatus = isPastMonth ? Math.random() > 0.2 : false;
+
+    // Payment date only exists when paid
+    let paymentDate = "";
+
+    if (paymentStatus) {
+      const paidDate = new Date(dueDate);
+      paidDate.setDate(paidDate.getDate() - Math.floor(Math.random() * 10 + 1));
+
+      paymentDate = paidDate.toISOString().split("T")[0];
+    }
 
     data.push({
-      date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
-        2,
-        "0",
-      )}`,
-      amount: Number(Math.max(400, amount).toFixed(2)),
+      userId,
+      meterNumber,
+      month,
+      year,
+      usage,
+      paymentAmount,
+      paidBy: paymentStatus ? "Online" : "",
+      paymentStatus,
+      currentMonth,
+      dueData: dueDate.toISOString().split("T")[0],
+      paymentDate,
     });
   }
 

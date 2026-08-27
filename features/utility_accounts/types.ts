@@ -1,3 +1,5 @@
+import { Bill } from "../bills/types";
+
 export type paymentStatus = "paid" | "not paid"
 
 type UsageData = {
@@ -5,10 +7,6 @@ type UsageData = {
   usage: number; // kWh
 };
 
-interface MonthlyBillData {
-  date: string;
-  amount: number;
-}
 
 export interface AddUtilityPayload {
   meterNumber: string;
@@ -26,7 +24,7 @@ export interface AddUtilityResponse {
 }
 
 export interface Meter {
-  userId: number;
+  userId: string;
   meterNumber: string;
   activeStatus: boolean;
   paymentStatus: paymentStatus;
@@ -36,5 +34,5 @@ export interface Meter {
   meterReading: number;
   address: string;
   usage_list: UsageData[];
-  bill_list: MonthlyBillData[];
+  bill_list: Bill[];
 }

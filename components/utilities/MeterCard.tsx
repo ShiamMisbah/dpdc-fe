@@ -7,15 +7,10 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 import { Badge } from "@/components/ui/badge";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 
 import { Button } from "@/components/ui/button";
+import MeterCardSettings from './MeterCardSettings';
 
 type Props = {
     meterNumber: string;
@@ -47,31 +42,7 @@ const MeterCard = ({activeStatus, address, currentBalance, lastRecharged, meterN
             {activeStatus ? "ACTIVE" : "INACTIVE"}
           </Badge>
 
-          {/* Three-dot menu */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex flex-col justify-center items-center size-8 rounded-full">
-              <MoreHorizontal className="size-4" />
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent className="w-full">
-              <DropdownMenuItem>
-                <Pencil />
-                Edit
-              </DropdownMenuItem>
-
-              <DropdownMenuItem>
-                <Star />
-                Make Default
-              </DropdownMenuItem>
-
-              <DropdownMenuSeparator />
-
-              <DropdownMenuItem variant="destructive">
-                <Trash2 />
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <MeterCardSettings />
         </div>
       </CardHeader>
 
