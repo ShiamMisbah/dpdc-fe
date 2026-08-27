@@ -40,10 +40,13 @@ const ProfileDropdownMenu = (props: Props) => {
           </DropdownMenuItem>
         </Link>
 
-        <DropdownMenuItem>
-          <CreditCardIcon />
-          Bill Summary
-        </DropdownMenuItem>
+        <Link href="/user/bills" aria-label="Go To Bills">
+          <DropdownMenuItem>
+            <CreditCardIcon />
+            Bill Summary
+          </DropdownMenuItem>
+        </Link>
+
         <DropdownMenuItem>
           <SettingsIcon />
           Settings

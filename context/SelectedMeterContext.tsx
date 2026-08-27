@@ -38,6 +38,7 @@ export const SelectedMeterProvider = ({
       localStorage.removeItem("DPDC-SelectedMeterData");
     }
   }, []);
+  
   const selectMeterFunc = (meter: Meter) => {
     localStorage.setItem("DPDC-SelectedMeterData", JSON.stringify(meter));
 

@@ -36,6 +36,7 @@ export interface User {
 }
 
 export interface LoggedInUser {
+  userId: string;
   firstName: string;
   lastName: string;
   email: string;

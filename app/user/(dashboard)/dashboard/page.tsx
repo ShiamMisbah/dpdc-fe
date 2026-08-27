@@ -26,14 +26,11 @@ const page = (props: Props) => {
       month: string;
       bill: number;
     }[] | []>([]);
-    console.log(selectedMeter);
-
+    
     useEffect(() => {
       if (selectedMeter){
-        setLastSixMonthBill(getLastMonthsBillChartData(
-          selectedMeter.bill_list,
-          6,
-        ));
+        const billList = getLastMonthsBillChartData(selectedMeter.bill_list, 6);        
+        setLastSixMonthBill(billList);
       }
     }, [selectedMeter])
 

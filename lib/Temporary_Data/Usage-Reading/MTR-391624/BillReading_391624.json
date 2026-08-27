@@ -1,50 +1,158 @@
 [
     {
-        "date": "2026-01",
-        "amount": 1180.45
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "01",
+        "year": "2025",
+        "usage": 313.15,
+        "paymentAmount": 2505.2,
+        "paidBy": "Online",
+        "paymentStatus": true,
+        "currentMonth": false,
+        "dueData": "2025-02-10",
+        "paymentDate": "2025-02-01"
     },
     {
-        "date": "2026-02",
-        "amount": 1265.44
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "02",
+        "year": "2025",
+        "usage": 221.24,
+        "paymentAmount": 1769.92,
+        "paidBy": "Online",
+        "paymentStatus": true,
+        "currentMonth": false,
+        "dueData": "2025-03-10",
+        "paymentDate": "2025-03-08"
     },
     {
-        "date": "2026-03",
-        "amount": 1038.11
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "03",
+        "year": "2025",
+        "usage": 324.55,
+        "paymentAmount": 2596.4,
+        "paidBy": "",
+        "paymentStatus": false,
+        "currentMonth": false,
+        "dueData": "2025-04-10",
+        "paymentDate": ""
     },
     {
-        "date": "2026-04",
-        "amount": 1040.24
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "04",
+        "year": "2025",
+        "usage": 225.67,
+        "paymentAmount": 1805.36,
+        "paidBy": "Online",
+        "paymentStatus": true,
+        "currentMonth": false,
+        "dueData": "2025-05-10",
+        "paymentDate": "2025-05-08"
     },
     {
-        "date": "2026-05",
-        "amount": 1079.48
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "05",
+        "year": "2025",
+        "usage": 383.01,
+        "paymentAmount": 3064.08,
+        "paidBy": "Online",
+        "paymentStatus": true,
+        "currentMonth": false,
+        "dueData": "2025-06-10",
+        "paymentDate": "2025-06-07"
     },
     {
-        "date": "2026-06",
-        "amount": 919.2
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "06",
+        "year": "2025",
+        "usage": 370.08,
+        "paymentAmount": 2960.64,
+        "paidBy": "Online",
+        "paymentStatus": true,
+        "currentMonth": false,
+        "dueData": "2025-07-10",
+        "paymentDate": "2025-07-01"
     },
     {
-        "date": "2026-07",
-        "amount": 767.14
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "07",
+        "year": "2025",
+        "usage": 247.9,
+        "paymentAmount": 1983.2,
+        "paidBy": "Online",
+        "paymentStatus": true,
+        "currentMonth": false,
+        "dueData": "2025-08-10",
+        "paymentDate": "2025-08-08"
     },
     {
-        "date": "2026-08",
-        "amount": 1254.21
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "08",
+        "year": "2025",
+        "usage": 169.12,
+        "paymentAmount": 1352.96,
+        "paidBy": "Online",
+        "paymentStatus": true,
+        "currentMonth": false,
+        "dueData": "2025-09-10",
+        "paymentDate": "2025-09-04"
     },
     {
-        "date": "2026-09",
-        "amount": 747.94
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "09",
+        "year": "2025",
+        "usage": 221.31,
+        "paymentAmount": 1770.48,
+        "paidBy": "Online",
+        "paymentStatus": true,
+        "currentMonth": false,
+        "dueData": "2025-10-10",
+        "paymentDate": "2025-10-01"
     },
     {
-        "date": "2026-10",
-        "amount": 976.99
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "10",
+        "year": "2025",
+        "usage": 163.58,
+        "paymentAmount": 1308.64,
+        "paidBy": "",
+        "paymentStatus": false,
+        "currentMonth": false,
+        "dueData": "2025-11-10",
+        "paymentDate": ""
     },
     {
-        "date": "2026-11",
-        "amount": 1179.79
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "11",
+        "year": "2025",
+        "usage": 150.81,
+        "paymentAmount": 1206.48,
+        "paidBy": "Online",
+        "paymentStatus": true,
+        "currentMonth": false,
+        "dueData": "2025-12-10",
+        "paymentDate": "2025-12-02"
     },
     {
-        "date": "2026-12",
-        "amount": 1002.3
+        "userId": "user12",
+        "meterNumber": "MTR-391624",
+        "month": "12",
+        "year": "2025",
+        "usage": 342.63,
+        "paymentAmount": 2741.04,
+        "paidBy": "Online",
+        "paymentStatus": true,
+        "currentMonth": false,
+        "dueData": "2026-01-10",
+        "paymentDate": "2026-01-05"
     }
 ]

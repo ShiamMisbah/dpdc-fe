@@ -61,10 +61,7 @@ const UsageChart = ({ usageList }: Props) => {
 
   const [filteredData, setFilteredData] = useState<UsageData[]>(
     getMonthlyUsage(usageList, reportDate, false),
-  );  
-
-  console.log(usageList);
-  
+  );    
 
   useEffect(() => {
     if (period === "daily")
